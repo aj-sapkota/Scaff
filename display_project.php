@@ -3,12 +3,25 @@ require('addon/authentication.php');
 require('addon/dbConnect.php');
 $query = $connect->query("SELECT * FROM `project_register` WHERE 1");
 //$result = $query->fetch(PDO::FETCH_ASSOC);
+
 ?>
+
+
+<!DOCTYPE html>
 <html>
 
-<?php include('html/head.html') ; ?>
+<?php include('html/head.html');?>
 
 <body>
+
+    <div class="wrapper">
+        <!-- Sidebar  -->
+       <?php include('addon/sidebarSelect.php');?>
+
+        <!-- Page Content  -->
+        <div id="content">
+        <?php include('html/navbar.html');?>
+            <div class="container my-container text-center">
     <div style="overflow-x:auto;">
     <table class="table table-hover" >
         <thead>
@@ -63,5 +76,13 @@ $query = $connect->query("SELECT * FROM `project_register` WHERE 1");
     
         </div>
         <input type="button" value="Home" onclick="location='index.php'" />
+            </div>
+
+        </div>
+    </div>
+    </div>
+
+  
 </body>
-        
+
+</html>

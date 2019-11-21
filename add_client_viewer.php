@@ -230,7 +230,7 @@ if (isset($_POST['submit'])) {
                 </div>
             </div>
        
-    </form>
+             </form>
 
             </div>
 
@@ -242,7 +242,3 @@ if (isset($_POST['submit'])) {
 </body>
 
 </html>
-
-
-
-

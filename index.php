@@ -33,9 +33,13 @@ if (isset($_POST["login"])) {
     $rowcount = $query->rowCount();
     if ($rowcount > 0) {
         if (password_verify($password, $result['password'])) {
+            $_SESSION['name'] = $result['client_name'];
             $_SESSION['email'] = $email;
             $_SESSION['password'] = $result['password'];
             $_SESSION['account_type'] = $result['account_type'];
+            $_SESSION['id']=$result['client_id'];
+            $_SESSION['order_num']=$result['order_num'];
+
             switch ($result['account_type']) {
                 case "CV":
                     header('Location: client_viewer_home.php');
