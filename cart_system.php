@@ -36,15 +36,39 @@ if (isset($_POST['order']) ) {
         $project_result->execute(array(':quotationid'=>$quotation_id,':userid'=>$_SESSION['id'],':price'=>$_POST['total'] ));
         echo $_SESSION['order_num']++;
         $query = $connect->query( " UPDATE `client_register` SET `order_num`={$_SESSION['order_num']} WHERE `client_id`={$_SESSION['id']}");
-        /*$table_data_num=0;
-        $query = $connect->query("DELETE FROM {$table_name}");*/
+        
+        $query1 = $connect->query("SELECT * FROM {$table_name} WHERE 1");
+        while ($result = $query1->fetch(PDO::FETCH_ASSOC)) {
+                   
+            $query2="INSERT INTO `quotation_items`(`quotation_id`, `product_material_item_code`, `product_name`, `product_brand_new_selling_rate`, `quantity`) 
+            VALUES (:id,:item_id,:name,:rate,:quantity)";
+            $query2_result=$connect->prepare($query2);
+            $query2_result->execute(array(
+                ':id'=>$quotation_id,
+                ':item_id'=>$result['product_material_item_code'],
+                ':name'=>$result['product_name'],
+                ':rate'=>$result['product_brand_new_selling_rate'],
+                ':quantity'=>$result['quantity']
+
+            ));
+
+
+
+
+
+        }
+
+        $table_data_num=0;
+        $query = $connect->query("DELETE FROM {$table_name}");
     } catch (PDOException $e) {
         echo "Error" . $e->getMessage();
         $error = "y";
     }
     if ($error != "y") {
-        echo "<script type='text/javascript'>alert('Submitted Successfully!')</script>";
+        echo "<script type='text/javascript'>confirm('Submitted Successfully!')</script>";
     }
+
+
 
     
 

@@ -10,10 +10,10 @@ if(!isset($_SESSION['email']) ){
 
 // Page Access Control
 $CV=array('','client_viewer_home.php','logout.php','access_denied.php','index.php');
-$CA=array('','client_admin_home.php','logout.php','access_denied.php','index.php','sess_cart_system.php');
+$CA=array('','client_admin_home.php','logout.php','access_denied.php','index.php','sess_cart_system.php','cart_system.php','quotation_list.php','display_quotation.php','confirm_order.php');
 $SU=array('','system_user_home.php','logout.php','access_denied.php','index.php');
 $SA=array('','system_admin_home.php','logout.php','access_denied.php','add_client_viewer.php',
-            'index.php','add_project.php','display_project.php','add_product.php','add_dn_cn.php','add_supplier.php','cart_system.php');
+            'index.php','add_project.php','display_project.php','add_product.php','add_dn_cn.php','add_supplier.php','quotation_list.php','approve_quotation.php');
 switch($_SESSION['account_type']){
     case "CV":
     if(!array_search($page_name,$CV)){
