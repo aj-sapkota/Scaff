@@ -4,9 +4,7 @@ require('addon/dbConnect.php');
 if(isset($_GET['id'])){
     $quotation_id=$_GET['id'];
 }
-
 ?>
-
 
 <!DOCTYPE html>
 <html>
