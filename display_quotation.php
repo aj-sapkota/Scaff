@@ -3,6 +3,11 @@ require('addon/authentication.php');
 require('addon/dbConnect.php');
 if(isset($_GET['id'])){
     $quotation_id=$_GET['id'];
+    $query1 = $connect->query("SELECT * FROM quotation_register WHERE quotation_id = '$quotation_id'");
+    $result1 = $query1->fetch(PDO::FETCH_ASSOC);
+    $timestamp=$result1['timestamp'];
+}else{
+    header('Location: index.php');
 }
 ?>
 
@@ -20,12 +25,11 @@ if(isset($_GET['id'])){
         <!-- Page Content  -->
         <div id="content">
         <?php include('html/navbar.html');?>
-            
             <div class="container my-container text-center">
                 <hr>
                 Quotation Id =<?php echo $quotation_id;?>
                 <hr>
-                Time Stamp = <?php echo $_GET['timestamp']?>
+                Time Stamp = <?php echo $timestamp; ?>
           
                     <table class="table table-hover">
                         <thead>

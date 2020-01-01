@@ -20,7 +20,7 @@ require('addon/authentication.php');
         <?php include('html/navbar.html');?>
             
             <div class="container my-container text-center">
-            <h1>Welcome System Admin</h1>
+            <h1>Welcome Yard Manager</h1>
 
             </div>
 

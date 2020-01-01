@@ -13,5 +13,9 @@
     //header('Location: system_admin_home.php');
     include('html/sidebarSA.html');
     break;
+    case "YM":
+        //header('Location: system_admin_home.php');
+        include('html/sidebarYM.html');
+        break;
 }
 ?>

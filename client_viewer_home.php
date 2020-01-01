@@ -1,8 +1,34 @@
 <?php
 require('addon/authentication.php');
-echo $_SESSION['email'];
-echo $_SESSION['password'];
-?>
-<h1>Welcome Client Viewer</h1>
 
-<input type="button" value="Log Out" onclick="location='logout.php'" />
+?>
+
+
+<!DOCTYPE html>
+<html>
+
+<?php include('html/head.html');?>
+
+<body>
+
+    <div class="wrapper">
+        <!-- Sidebar  -->
+       <?php include('addon/sidebarSelect.php');?>
+
+        <!-- Page Content  -->
+        <div id="content">
+        <?php include('html/navbar.html');?>
+            
+            <div class="container my-container text-center">
+            <h1>Welcome Client Viewer</h1>
+
+            </div>
+
+        </div>
+    </div>
+    </div>
+
+  
+</body>
+
+</html>

@@ -1,11 +1,15 @@
 <?php
 require('addon/authentication.php');
 require('addon/dbConnect.php');
+$approved=0;
 if(isset($_GET['id'])){
     $quotation_id=$_GET['id'];
 }
 $query1 = $connect->query("SELECT * FROM quotation_register WHERE quotation_id = '$quotation_id' AND system_user_approved=0");
 $result1 = $query1->fetch(PDO::FETCH_ASSOC);
+if($query1->rowCount()==0){
+    $approved=1;
+}
 
 $payment_amount=@$total*(1-@$discount_percent*0.01);
 
@@ -13,6 +17,7 @@ if(isset($_POST['update'])){
     $discount_percent=$_POST['discount_percent'];
     $advance_payment=$_POST['advance_amount'];
     $payment_amount=$result1['total_price']*(1-($discount_percent*0.01));
+    
 }
 if(isset($_POST['approve'])){
     $discount_percent=$_POST['discount_percent'];
@@ -22,6 +27,7 @@ if(isset($_POST['approve'])){
     `system_user_approved`={$_SESSION['id']},`status`='SYSTEM APPROVED' WHERE quotation_id='$quotation_id'
     ");
     echo "<script type='text/javascript'>alert('Quoatation has been aprooved and is awaiting confirmation!')</script>";
+    $approved=1;
    
 }
 
@@ -48,7 +54,7 @@ if(isset($_POST['approve'])){
             
             <div class="container my-container text-center">
                 <?php 
-                           if($query1->rowCount()!=0){ ?>
+                           if($approved==0){ ?>
                 <hr>
                 Quotation Id =<?php echo $quotation_id;?>
                 <hr>          
@@ -102,14 +108,16 @@ if(isset($_POST['approve'])){
 
                         </tbody>
                     </table>
-                    Advance Payment=<?php echo @$advance_payment; ?>
+                    Advance Payment=<?php echo @$result1['payment_advance']; ?>
                     <form action="<?php echo "approve_quotation.php?id=".$quotation_id ?>" method="post">
-                            Discount Percentage : <input type="number" min="0" step="0.01" name="discount_percent" value="<?php echo @$discount_percent;?>"></input>
+                            Discount Percentage : <input type="number" min="0" step="0.01" max="100" name="discount_percent" value="<?php echo @$discount_percent;?>"></input>
                             Advance Payment Amount<input type="number" min ="0" step="0.01" name="advance_amount" value="<?php echo @$advance_payment;?>">
                             <input type="submit" name="update" value="Update"> 
                             <input type="submit" name="approve" value="Approve">
                     </form>
-                        <?php }?> 
+                        <?php }else{
+                            echo "quotation has been approved";
+                            }?> 
             </div>
 
         </div>

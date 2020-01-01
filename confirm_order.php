@@ -1,10 +1,15 @@
 <?php
 require('addon/authentication.php');
 require('addon/dbConnect.php');
+$approved=0;
 if(isset($_GET['id'])){
     $quotation_id=$_GET['id'];
-}
+
 $query1 = $connect->query("SELECT * FROM quotation_register WHERE quotation_id = '$quotation_id' AND client_admin_approved=0");
+if($query1->rowCount()==0){
+    $approved=1;
+
+}
 $result1 = $query1->fetch(PDO::FETCH_ASSOC);
 $payment_amount=$result1['total_price']*(1-$result1['discount_rate']*0.01);
 
@@ -12,6 +17,10 @@ if(isset($_POST['confirm'])){
     $query = $connect->query(" UPDATE `quotation_register` SET `client_admin_approved`={$_SESSION['id']},`status`='ORDER CONFIRMED' WHERE quotation_id='$quotation_id'
     ");
     echo "<script type='text/javascript'>alert('Order has been confirmed.. Please pay the advance amount to ship your order !')</script>";
+    $approved=1;
+}
+}else{
+    header("Location: access_denied.php");
 }
 
 
@@ -36,7 +45,7 @@ if(isset($_POST['confirm'])){
         <?php include('html/navbar.html');?>
             
             <div class="container my-container text-center">
-                <?php if($query1->rowCount()!=0){ ?>
+                <?php if($approved==0){ ?>
                 <hr>
                 Quotation Id =<?php echo $quotation_id;?>
                 <hr>          
@@ -93,7 +102,9 @@ if(isset($_POST['confirm'])){
                     <form action="<?php echo "confirm_order.php?id=".$quotation_id ?>" method="post">
                             <input type="submit" name="confirm" value="Confirm">
                     </form>
-                        <?php }?>
+                        <?php }else{
+                            echo "Order has been confirmed !!";
+                            }?>
             </div>
 
         </div>

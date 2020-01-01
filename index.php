@@ -1,9 +1,14 @@
 <?php
 session_start();
 require('addon/dbConnect.php');
+
 // Check if already logged in 
 if (isset($_SESSION['email'])) {
     switch ($_SESSION['account_type']) {
+        case "YM":
+            header('Location: yard_manager_home.php');
+           
+            break;
         case "CV":
             header('Location: client_viewer_home.php');
             break;
@@ -16,6 +21,7 @@ if (isset($_SESSION['email'])) {
         case "SA":
             header('Location: system_admin_home.php');
             break;
+        
     }
 }
 $login_alert = "";
@@ -38,6 +44,7 @@ if (isset($_POST["login"])) {
             $_SESSION['password'] = $result['password'];
             $_SESSION['account_type'] = $result['account_type'];
             $_SESSION['id']=$result['client_id'];
+
             $_SESSION['order_num']=$result['order_num'];
 
             switch ($result['account_type']) {
@@ -53,6 +60,9 @@ if (isset($_POST["login"])) {
                 case "SA":
                     header('Location: system_admin_home.php');
                     break;
+                case "YM":
+                        header('Location: yard_manager_home.php');
+                        break;
             }
         } else {
             $login_alert = "Incorrect Password";

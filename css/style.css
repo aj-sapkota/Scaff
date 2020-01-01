@@ -292,6 +292,7 @@ a.article:hover {
 }
 
 
+
 /* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
@@ -344,9 +345,7 @@ a.article:hover {
         display: none;
     }
 }
-.container-fluid{
-    padding: 0px !important;
-}
+
 .my-container {
             border: 5px pink;
             text-align: center;
@@ -361,8 +360,25 @@ a.article:hover {
         .my-col {
             border: 0px solid pink;
             margin: 1px;
+            
         }
-
+        .full{
+            width: 80%;
+        }
+.half{
+    width: 50%;
+}
+.content-left {
+    width: 50%;
+    float: left;
+ 
+}
+.content-right {
+    width: 50%;
+    float: left;
+    
+    
+}
         button:hover {
             opacity: 0.8;
         }

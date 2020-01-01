@@ -13,7 +13,7 @@ if (isset($_POST['order']) ) {
     $error = "";
     try {
         $project_result = $connect->prepare($project_query);
-        $project_result->execute(array(':quotationid'=>$quotation_id,':userid'=>$_SESSION['id'],':price'=>$_POST['total'] ));
+        $project_result->execute(array(':quotationid'=>$quotation_id,':userid'=>$_SESSION['id'],':price'=>$_SESSION['total'] ));
         echo $_SESSION['order_num']++;
         $query = $connect->query( " UPDATE `client_register` SET `order_num`={$_SESSION['order_num']} WHERE `client_id`={$_SESSION['id']}");
         
@@ -119,7 +119,7 @@ COMMIT;");
 
 ?>
 <style>
-    .content-center {
+    .content-left {
         width: 50%;
         float: left;
         padding: 5;
@@ -165,7 +165,7 @@ COMMIT;");
         <div id="content">
             <?php include('html/navbar.html'); ?>
 
-            <div class="content-center">
+            <div class="content-left">
                 <div class="show-table">
                     <div style="overflow-x:auto;">
                         <table class="table table-hover">
@@ -246,7 +246,8 @@ COMMIT;");
                             <tr>
                                 <td colspan="4"></td>
                                 <td>Total</td>
-                                <td><?php echo $total; ?></td>
+                                <td><?php echo $total;
+                                $_SESSION['total']=$total; ?></td>
                         </tbody>
                     </table>
 

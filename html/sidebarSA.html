@@ -17,20 +17,20 @@
                     <span class="CTAs">&emsp;Add<i class="fas fa-caret-down" "></i></span>
                 </a>
                 <ul class=" collapse list-unstyled" id="addSubmenu">
-            <li>
-                <a href="add_supplier.php">Supplier</a>
+                    <li>
+                        <a href="add_supplier.php">Supplier</a>
+                    </li>
+                    <li>
+                        <a href="add_dn_cn.php">DN CN</a>
+                    </li>
+                     <li>
+                        <a href="add_project.php">Project</a>
+                    </li>
+                    <li>
+                        <a href="add_product.php">Product</a>
+                    </li>
+                </ul>
             </li>
-            <li>
-                    <a href="add_dn_cn.php">DN CN</a>
-                </li>
-            <li>
-                <a href="add_project.php">Project</a>
-            </li>
-            <li>
-                <a href="add_product.php">Product</a>
-            </li>
-        </ul>
-        </li>
         <li>
             <a href="#userSubmenu" data-toggle="collapse" aria-expanded="false">
                 <i class="fas fa-user-plus fa-2x"></i>
@@ -39,13 +39,13 @@
                     </a>
                     <ul class=" collapse list-unstyled" id="userSubmenu">
         <li>
-            <a href="add_client_viewer.php">Client Viewer</a>
+            <a href="add_users.php">Add</a>
         </li>
         <li>
-            <a href="#">Client Admin</a>
+            <a href="#">...</a>
         </li>
         <li>
-            <a href="#">System User</a>
+            <a href="#">...</a>
         </li>
         </ul>
         </li>
@@ -67,12 +67,34 @@
                 </li>
             </ul>
         </li>
-        <li>
-            <a href="logout.php">
-                    <i class="fas fa-power-off fa-2x"></i>
-                    <span class="CTAs"> &ensp;Log Out</span>
+            <li>
+                <a href="#orderSubmenu" data-toggle="collapse" aria-expanded="false">
+                    <i class="fas fa-list fa-2x"></i>
+                    <span class="CTAs">&emsp;Order<i class="fas fa-caret-down" "></i></span>
                 </a>
+                <ul class=" collapse list-unstyled" id="orderSubmenu">
+                    <li>
+                        <a href="quotation_list.php">View All</a>
+                    </li>
+                    <li>
+                        <a href="quotation_list.php?action=approve_quotation">Approve</a>
+                    </li>
+                     <li>
+                        <a href="quotation_list.php?action=confirm_payment">Payment</a>
+                    </li>
+                    <li>
+                        <a href="#">Null</a>
+                    </li>
+                   
+                </ul>
             </li>
-        
+
+            <li>
+                <a href="logout.php">
+                        <i class="fas fa-power-off fa-2x"></i>
+                        <span class="CTAs"> &ensp;Log Out</span>
+                    </a>
+            </li>
+
         </ul>
     </nav>
